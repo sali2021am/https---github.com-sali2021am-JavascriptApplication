@@ -1,0 +1,107 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <script src="http://localhost:8080/auth/js/keycloak.js"></script>
+        <script src="myLogic.js"></script>
+		
+        <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 500px;
+            }
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+            tr:nth-child(even) {
+                background-color: #94ab9e;
+                color:black;
+            }
+            tr:nth-child(odd) {
+                color:whitesmoke;
+            }
+			      input {
+					padding: 15px 15px;
+					margin: 10px 10px;
+					cursor: pointer;
+					text-transform: uppercase;
+					text-align: center;
+					position: relative;
+					background: #7484FB;
+
+				  }
+				  input:hover {
+					opacity: 0.5;
+				  }
+				  textarea{
+				  background-color :#DCDCDC;
+				  
+				  }
+        </style>
+    </head>
+    <body onload="initKeycloak()">
+        <div id="header">
+            <img id="logo" style="height: 150px; width: 150px; border-radius: 100%; padding: 15px 15px 15px 15px" src="img/logo.png" alt="GCDSTE">
+            <h1 id="headerLabel" align="center" style="color: #0F51A2;">Impl&eacute;mentation d'une solution de gestion d'identit&eacute; de confiance en utilisant les m&eacute;canismes OAuth 2.0 Vs OpenID Connect Vs SAML</h1>
+        </div>
+
+        <div id="content" style="width:60%; margin:0 auto;">
+            <p style="color: darkgray;margin: 90px 50px 25px 50px;">
+                 Dans le cadre  de stage , on a choisie  <strong style="color:#0F51A2">Keycloak</strong> comme solution Open Source de gestion des identit&eacute;s et des acc&eacute;s pour les applications et services modernes.
+            </p>
+            <p style="color: darkgray;margin: 0px 50px 25px 50px;">
+			Keycloak est un logiciel &agrave code source ouvert permettant d'instaurer une m&eacute;thode d'authentification unique &agrave travers la gestion par identit&eacute; et par acc&eacute;s. Initialement d&eacute;velopp&eacute; par les &eacute;quipes JBoss, le projet est depuis mars 2018 sous la g&eacute;rance de Red Hat qui l'utilise en amont de sa solution RH-SSO2. Keycloak se d&eacute;finit comme une application rendant possible la s&eacute;curisation de n'importe quelle application web moderne avec un apport minimum en termes de code. 
+                </p>
+				
+			<p style="color: darkgray;margin: 0px 50px 25px 50px;">	
+			**Cette page est le r&eacute;sultat d'acc&eacute;e r&eacute;ussie apr&eacute;s l'authentification de l'utilisateur avec Keycloak
+			</p>
+          
+        </div>
+        <div id="table-attr">
+            <table align="center">
+                <tr>
+                    <th style="text-align:center;">Attributes</th>
+                    <th style="text-align:center;">Value</th>
+                </tr>
+                <tr>
+                    <td style="text-align:center;">Username</td>
+                    <td id="row-username" style="text-align:center;">${user.username}</td>
+                </tr>
+                <tr>
+                    <td style="text-align:center;">First Name</td>
+                    <td id="row-firstName" style="text-align:center;">${user.username}</td>
+                </tr>
+                <tr>
+                    <td style="text-align:center;">Last Name</td>
+                    <td id="row-lastName" style="text-align:center;">${user.username}</td>
+                </tr>
+                <tr>
+                    <td style="text-align:center;">Name</td>
+                    <td id="row-name" style="text-align:center;">${user.fullName}</td>
+                </tr>
+                <tr>
+                    <td style="text-align:center;">Email</td>
+                    <td id="row-email" style="text-align:center;">${user.email}</td>
+                </tr>
+            </table>
+        </div>
+        <div d="content" style="width:20%; margin:50px 500px auto;">
+            <div >
+				
+				<label style="display:inline-block;color:#0F51A2 ; margin-bottom:13px;">Access_Token : </label>
+                <textarea " id="ta-token" rows="25" cols="60" placeholder="Access_Token" readonly>EMPTY</textarea>
+				<label style="display:inline-block;color:#0F51A2 ; margin-bottom:13px; margin-top:8px;">Refrech_Token : </label>
+                <textarea  id="ta-refreshToken" rows="10" cols="60" placeholder="Refrech_Token" readonly>EMPTY</textarea>
+            </div>
+			
+			<br/>
+            
+            <input type="button" value="Update Token" onclick="refreshToken()" />
+
+            <input  type="button" id="LOGOUT" value="LOGOUT" onclick="logout()" />
+        </div>        
+    </body>
+</html>
